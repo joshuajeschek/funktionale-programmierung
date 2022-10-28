@@ -29,7 +29,7 @@ ggT a b
 fourEqualA :: Int -> Int -> Int -> Int -> Bool
 fourEqualA m n p o = threeEqual m n p && (p == o)
 fourEqualB :: Int -> Int -> Int -> Int -> Bool
-fourEqualB m n p o = (m == n) && (n == p) && (p == o) && (p == o)
+fourEqualB m n p o = (m == n) && (n == p) && (p == o)
 
 -- b)
 xor3A :: Bool -> Bool -> Bool -> Bool

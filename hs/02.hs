@@ -9,6 +9,7 @@ threeEqual m n p = (m == n) && (n == p)
 -- a)
 calcFibonacci :: Int -> Int
 calcFibonacci i
+  | i < 0     = error "bad number"
   | i == 0    = 0
   | i == 1    = 1
   | otherwise = calcFibonacci(i-1) + calcFibonacci(i-2)
@@ -32,7 +33,7 @@ fourEqualB m n p o = (m == n) && (n == p) && (p == o) && (p == o)
 
 -- b)
 xor3A :: Bool -> Bool -> Bool -> Bool
-xor3A x y z = x `xor` y `xor` z
+xor3A x y z = x `xor` y `xor` z 
 xor3B :: Bool -> Bool -> Bool -> Bool
 xor3B x y z = (x || ((y || z) && not(y && z)))
   && not(x && ((y || z) && not(y && z)))

@@ -33,7 +33,7 @@ fourEqualB m n p o = (m == n) && (n == p) && (p == o)
 
 -- b)
 xor3A :: Bool -> Bool -> Bool -> Bool
-xor3A x y z = x `xor` y `xor` z 
+xor3A x y z = x `xor` y `xor` z
 xor3B :: Bool -> Bool -> Bool -> Bool
 xor3B x y z = (x || ((y || z) && not(y && z)))
   && not(x && ((y || z) && not(y && z)))
@@ -44,16 +44,23 @@ xor3D x y z = xor x (xor y z)
 
 -- 03
 -- a)
-min2 :: Int -> Int -> Int
+min2 :: Float -> Float -> Float
 min2 a b
   | a < b     = a
   | otherwise = b
-max2 :: Int -> Int -> Int
+max2 :: Float -> Float -> Float
 max2 a b
   | a > b     = a
   | otherwise = b
-middleOfThree :: Int -> Int -> Int -> Int
-middleOfThree a b c = a + b + c - min2 a (min2 b c) - max2 a (max2 b c)
+max4 :: Int -> Int -> Int -> Int -> Int
+max4 a b c d = max (max a b) (max c d)
+middleOfThreeA :: Float -> Float -> Float -> Float
+middleOfThreeA a b c = a + b + c - min2 a (min2 b c) - max2 a (max2 b c)
+middleOfThreeB :: Float -> Float -> Float -> Float
+middleOfThreeB a b c
+  | min b c <= a && a <= max b c  = a
+  | min a c <= b && b <= max a c = b
+  | otherwise                         = c
 -- b)
 howManyEqualOfThree :: Int -> Int -> Int -> Int
 howManyEqualOfThree a b c
@@ -63,7 +70,7 @@ howManyEqualOfThree a b c
 howManyEqualOfFour :: Int -> Int -> Int -> Int -> Int
 howManyEqualOfFour a b c d
   | (a == b) && (b == c) && (c == d) = 4
-  | otherwise                        = max2 (howManyEqualOfThree a b c) (howManyEqualOfThree b c d)
+  | otherwise                        = max4 (howManyEqualOfThree a b c) (howManyEqualOfThree b c d) (howManyEqualOfThree a b d) (howManyEqualOfThree a c d)
 
 -- 04
 nandA :: Bool -> Bool -> Bool

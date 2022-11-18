@@ -1,0 +1,39 @@
+sum []     = 0                 -- A1
+sum x:xs   = x + sum xs        -- A2
+dbl []     = []                -- B1
+dbl x:xs   = (2*x) : (dbl xs)  -- B2
+x:[]       = [x]               -- C1
+x:[y,..,z] = [x,y,..,z]        -- C2
+
+[sum (dbl xs)] == dbl [sum xs]
+
+-- Induktionsanfang
+[sum (dbl [])] == dbl [sum []]   -- B1
+[sum []]       == dbl [sum []]   -- A1
+[0]            == dbl [sum []]   -- A1
+[0]            == dbl [0]        -- C1
+[0]            == dbl (0:[])     -- B2
+[0]            == (2*0):(dbl []) -- B1
+[0]            == (2*0):[]       -- Op*
+[0]            == 0:[]           -- C1
+[0]            == [0]            -- TRUE
+
+-- Induktionsannahme
+[sum (dbl xs)] == dbl [sum xs] -- IA
+
+-- Induktionsbehauptung
+-- entweder auf wahre Aussage oder Induktionsannahme kommen
+[sum (dbl x:xs)]       == dbl [sum x:xs]            -- B2
+[sum ((2*x):(dbl xs))] == dbl [sum x:xs]            -- A2
+[(2*x) + sum (dbl xs)] == dbl [sum (x:xs)]          -- A2
+[(2*x) + sum (dbl xs)] == dbl [x + sum xs]          -- C1
+[(2*x) + sum (dbl xs)] == dbl (x + sum xs):[]       -- B2
+[(2*x) + sum (dbl xs)] == (2*(x + sum xs)):(dbl []) -- B1
+[(2*x) + sum (dbl xs)] == (2*(x + sum xs)):[]       -- C1
+[(2*x) + sum (dbl xs)] == [(2*(x + sum xs))]        -- Op*, Distributivität, Klammern auflösen
+[(2*x) + sum (dbl xs)] == [(2*x) + (2*(sum xs))]    -- (2*x) abziehen
+[sum (dbl xs)]         == [(2*(sum xs))]            -- C1
+[sum (dbl xs)]         == (2*(sum xs)):[]           -- B2
+[sum (dbl xs)]         == dbl (sum xs):[]           -- C1
+[sum (dbl xs)]         == dbl [sum xs]              -- Induktionsannahme!
+

@@ -1,0 +1,51 @@
+-- 1.
+-- a)
+(λx.x y) (λz.z)
+(λz.z) y
+y
+
+-- b)
+(λx.x) ((λy.y) x)
+-- LO
+(λy.y) x
+x
+-- LI
+(λx.x) x
+x
+
+-- c)
+(λx.λy.x (λz.z) y) (λx.x x)
+λy.(λx.x x) (λz.z) y -- (x durch Parameter ersetzt)
+λy.(λz.z) (λz.z) y
+λy.(λz.z) y
+λy.y
+
+-- d)
+(λg.g (λy.y)) (λf.λx.f x)
+(λf.λx.f x) (λy.y)
+λx.(λy.y) x
+λy.y
+
+
+-- e)
+(λx.x x) ((λx.x) y)
+((λx.x) y) ((λx.x) y)
+y ((λx.x) y)
+y y
+
+-- f)
+(λx.x x) (λx.x) y
+((λx.x) (λx.x)) y
+(λx.x) y
+y
+
+-- 1.
+-- a)
+λx.λx.x <-> λy.λx.x
+ 2  1 1      1  1 1
+ --> ja
+
+
+-- b)
+λx.λx.x <-> λy.λx.y
+    └─┘      └────┘
